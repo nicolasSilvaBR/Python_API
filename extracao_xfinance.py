@@ -2,12 +2,21 @@
 # pip install pandas
 # pip install pyarrow
 # pip install openpyxl
+# pip install python-dotenv
 
+from dotenv import load_dotenv
+import os
 import requests
 import pandas as pd
+import streamlit as st
 
-# Token de autenticação
-token = 'c612a092017fc39036d10905bf6ce586'
+# Carrega o .env
+load_dotenv()
+
+# Acessa o token da variável de ambiente
+token = os.getenv('MY_API_TOKEN')
+if token is None:
+    raise ValueError("No API token provided!")
 
 # Cabeçalho de autenticação
 headers = {"Authorization": f"Bearer {token}"}
